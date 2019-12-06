@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  role_name: self-configurable-deployment
+  role_name: deploy-via-git-push
   author: Hleb Rubanau
-  description: Prepares host to be self-configurable via custom ansible recipes
+  description: Update host via git push to local storage
   license: MIT
   min_ansible_version: 2.1
   galaxy_tags:
