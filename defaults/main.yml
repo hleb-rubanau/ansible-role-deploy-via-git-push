@@ -1,0 +1,7 @@
+---
+deployment_user: deploy
+deployment_recipes_directory: /usr/local/etc/ansible
+deployment_commiters: []
+deployment_branch: master
+deployment_subdir: ""
+deployment_command: "./deploy.sh"

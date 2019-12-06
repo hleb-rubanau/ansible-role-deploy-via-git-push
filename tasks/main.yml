@@ -1,0 +1,51 @@
+---
+- set_fact: 
+    deployment_worktree: "{{ deployment_recipes_directory }}/{{deployment_project}}"
+    deployment_gitstore: "/home/{{ deployment_user }}/{{ deployment_project }}.git"
+    deployment_logtag: "deploy_{{deployment_project}}"
+    deployment_workdir: "{{ deployment_worktree if len(deployment_subdir)==0 else deployment_worktree+'/'+deployment_subdir }}"
+    deployment_script: "/usr/local/bin/deploy_{{deployment_project}}.sh"
+- apt:
+    name: 
+      - git
+      - sudo
+- lineinfile:
+    line: /usr/bin/git-shell
+    path: /etc/shells
+- user:
+    user: "{{ deployment_user }}"
+    create_home: yes 
+    password_lock: yes
+    shell: /usr/bin/git-shell
+    system: yes
+- authorized_key:
+    user: "{{ deployment_user }}"
+    key: "{{ item }}"
+  with_items: "{{ deployment_commiters }}"
+- file:
+    dest: "{{ item }}"
+    owner: "{{ deployment_user }}"
+    group: "{{ deployment_user }}" 
+    state: directory
+  with_items:
+    - "{{ deployment_worktree }}"
+    - "{{ deployment_gitstore }}"
+- command: git --bare init .
+  become: true
+  become_user: "{{ deployment_user }}"
+  args:
+    chdir: "{{ deployment_gitstore }}"
+    creates: "{{ deployment_gitstore }}/hooks"
+- template:
+    src: deploy.sh
+    dest: "{{ deployment_script }}"
+    mode: 0755
+- lineinfile:
+    path: /etc/sudoers
+    line: "{{ deployment_user }}     ALL = (root) NOPASSWD:SETENV:{{ deployment_script }}"
+    validate: 'visudo -c'
+- template:
+    src: hook_script.sh 
+    dest: "{{ deployment_gitstore }}/hooks/post-receive"
+    mode: 0755
+    owner: "{{ deployment_user }}"
