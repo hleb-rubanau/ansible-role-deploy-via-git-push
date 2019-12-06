@@ -1,6 +1,6 @@
 ---
 galaxy_info:
-  role_name: ansible-self-configurable-deployment
+  role_name: self-configurable-deployment
   author: Hleb Rubanau
   description: Prepares host to be self-configurable via custom ansible recipes
   license: MIT
