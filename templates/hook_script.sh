@@ -4,7 +4,7 @@ set -e
 
 revision_to_checkout=''
 while read old new ref ; do
-  if [[ $ref =~ .*/{{ deployment_branch }}$ ]]; then
+  if [[ $ref =~ .*/{{ deployment_git_branch }}$ ]]; then
     revision_to_checkout=$new
   fi
 done
