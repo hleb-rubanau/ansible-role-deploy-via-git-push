@@ -3,7 +3,7 @@
     deployment_worktree: "{{ deployment_recipes_directory }}/{{deployment_project}}"
     deployment_gitstore: "/home/{{ deployment_user }}/{{ deployment_project }}.git"
     deployment_logtag: "deploy_{{deployment_project}}"
-    deployment_workdir: "{{ deployment_worktree if len(deployment_subdir)==0 else deployment_worktree+'/'+deployment_subdir }}"
+    deployment_workdir: "{{ deployment_worktree if deployment_subdir=='' else deployment_worktree+'/'+deployment_subdir }}"
     deployment_script: "/usr/local/bin/deploy_{{deployment_project}}.sh"
 - apt:
     name: 
