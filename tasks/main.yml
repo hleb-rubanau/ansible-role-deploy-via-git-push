@@ -44,7 +44,7 @@
 - lineinfile:
     path: /etc/sudoers
     line: "{{ deployment_user }}     ALL = (root) NOPASSWD:SETENV:{{ deployment_script }}"
-    validate: 'visudo -c'
+    validate: 'visudo -cf "%s"'
 - template:
     src: hook_script.sh 
     dest: "{{ deployment_gitstore }}/hooks/post-receive"
