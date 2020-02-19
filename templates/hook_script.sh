@@ -2,9 +2,6 @@
 
 set -e
 
-DEPLOYMENT_GITDIR="{{ deployment_gitdir }}"
-DEPLOYMENT_WORKTREE="{{ deployment_worktree }}"
-
 revision_to_checkout=''
 while read old new ref ; do
   if [[ $ref =~ .*/{{ deployment_branch }}$ ]]; then
