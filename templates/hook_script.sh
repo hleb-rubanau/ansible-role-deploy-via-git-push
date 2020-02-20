@@ -11,7 +11,7 @@ done
 
 
 if [ ! -z "$revision_to_checkout" ]; then
-  echo "Checking out #revision_to_checkout into $deployment_worktree"
+  echo "Checking out revision $revision_to_checkout into {{ deployment_worktree }}"
   git --git-dir "{{ deployment_gitstore }}" --work-tree "{{ deployment_worktree }}" checkout -f $revision_to_checkout ;
 fi
 
