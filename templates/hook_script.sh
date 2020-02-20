@@ -15,4 +15,5 @@ if [ ! -z "$revision_to_checkout" ]; then
   git --git-dir "{{ deployment_gitstore }}" --work-tree "{{ deployment_worktree }}" checkout -f $revision_to_checkout ;
 fi
 
+echo "Running sudo {{ deployment_script }}"
 exec sudo "{{ deployment_script }}"
