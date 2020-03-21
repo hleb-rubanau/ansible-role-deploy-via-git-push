@@ -19,7 +19,7 @@ Run `ansible-galaxy install -r requirements.yml roles/`
 3. ```deployment_user```  (optional, default: `deploy`)  -- system user who serves as git receiver
 4. ```deployment_commiters``` (optional, default: `[]`) -- keys for users allowed to push as `deployment\_user`
 5. ```deployment_git_branch``` (optional, default: `master`)) -- branch to switch to
-6. ```deployment_git_subdir``` (optional, default: `''`) -- subdirectory inside git repo to switch to before running command
+6. ```deployment_subdir``` (optional, default: `''`) -- subdirectory inside git repo to switch to before running command
     
 # In playbook:
 Add role deploy-via-git-push
