@@ -11,7 +11,7 @@ done
 
 
 if [ ! -z "$revision_to_checkout" ]; then
-  DEPLOYMENT_TAG="deployment_$( date +%F_%H%M%S )"
+  DEPLOYMENT_TAG="deployment_$( date +%Y%m%d_%H%M%S )"
   echo "Marking $revision_to_checkout as $DEPLOYMENT_TAG"
   git --git-dir "{{ deployment_gitstore }}" tag "$DEPLOYMENT_TAG" $revision_to_checkout ;
   echo "Checking out revision $revision_to_checkout into {{ deployment_worktree }}"
