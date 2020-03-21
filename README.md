@@ -24,3 +24,11 @@ Run `ansible-galaxy install -r requirements.yml roles/`
 # In playbook:
 Add role deploy-via-git-push
 
+# Simplest ad-hoc invocation:
+
+```
+< setting config variables skipped >
+
+ansible-galaxy install -p roles git+https://github.com/hleb-rubanau/ansible-role-deploy-via-git-push
+ansible localhost -m import_role -a name=ansible-role-deploy-via-git-push
+```
